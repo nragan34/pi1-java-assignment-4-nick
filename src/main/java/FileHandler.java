@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +28,12 @@ public class FileHandler {
         if (line != null && !line.isBlank()) {
           // format names from file and make sure they have a space between the first and last name
           String formatLineSpacing = formatLineSpacing(line);
-            if (formatStringName(formatLineSpacing) != null) {
-              String formatNames = formatStringName(formatLineSpacing);
-              studentName.add(formatNames);
-            } else {
-              return null;
-            }
+          if (formatStringName(formatLineSpacing) != null) {
+            String formatNames = formatStringName(formatLineSpacing);
+            studentName.add(formatNames);
+          } else {
+            return null;
+          }
         }
       }
     } catch (FileNotFoundException e) {
@@ -75,7 +77,8 @@ public class FileHandler {
       System.out.println("Error please format this line again... " + line);
       return null;
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("This line in your file needs a space between the first and last name... " + line);
+      System.out.println(
+          "This line in your file needs a space between the first and last name... " + line);
       return null;
     }
   }
@@ -101,26 +104,9 @@ public class FileHandler {
   ///////////////////////////////////////////////////
   /////////////////////////// File Writer
   public void writeStudentReports(String filePath) {
-    BufferedWriter writer = null;
-    try {
-      writer = new BufferedWriter(new FileWriter(filePath));
-      String line = "";
-      // loop through  and create a file for each
-      while (line != null) {
-        // need to create files for each student and write a report card
-        //line = generateReportCards();
-        writer.write(line);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (writer != null) {
-        try {
-          writer.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
+
   }
+
+
+
 }

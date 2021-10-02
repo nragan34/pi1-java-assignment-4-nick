@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -134,19 +137,37 @@ public class Main {
     }
   }
 
-
+  ////////////////////////////
+  // Create report cards from assignmentList
+  public void cleanReportCardData() {
+    System.out.println("student report card");
+    assignmentList
+        .stream()
+        .forEach(e -> {
+          System.out.println(e);
+          System.out.println("----------------");
+          System.out.println("----------------");
+        });
+  }
 
   ////////////////////////////
   // Create report cards from assignmentList
   public void createReportCards() {
+//    String outputDirectory = commandLineInput.userInputString(
+//        "\nEnter output Directory: ");
+    System.out.println("student report card");
+    HashMap studentMap = new HashMap();
+    List<Integer> collectedStudentId = studentObjectList
+        .stream().map(e -> e.getId()).collect(Collectors.toList());
     assignmentList
         .stream()
-        .forEach(e -> {
-          System.out.println(e.getAssignmentName());
-          System.out.println(e.getId());
-          System.out.println("----------------");
-        });
+        .filter(e -> collectedStudentId.contains(e.getId()))
+        .forEach(System.out::println);
   }
+
+
+  // C:\Users\ragan\Desktop\students.txt
+
   // Write Grades to a report card
 
   // get output file location
