@@ -1,16 +1,15 @@
 import java.util.List;
 
-public class Assignment extends Student {
+// is a
+public class Assignment {
 
   private String assignmentName;
   private double assignmentGrade;
-  private int id;
+  private int studentId;
 
   // firstName, lastName, assignmentName, assignmentGrade
-  public Assignment(int id, String firstName, String lastName, String assignmentName,
-      double assignmentGrade) {
-    super(firstName, lastName);
-    this.id = id;
+  public Assignment(int id, String assignmentName, double assignmentGrade) {
+    this.studentId = id;
     this.assignmentName = assignmentName;
     this.assignmentGrade = assignmentGrade;
   }
@@ -23,35 +22,7 @@ public class Assignment extends Student {
     return assignmentGrade;
   }
 
-  @Override
-  public int getId() {
-    return id;
+  public int getStudentId() {
+    return studentId;
   }
-
-  public double gradeAverage(double grade, double assignmentCount) {
-    double gradesEarned = grade += grade;
-    double totalScore = assignmentCount * 100;
-    return gradesEarned / totalScore;
-  }
-
-  public String letterGrade(double grade) {
-    String letterGrade;
-    if (grade >= 90) {
-      return letterGrade = "A";
-    } else if (grade >= 80 && grade < 90) {
-      return letterGrade = "B";
-    } else if (grade >= 70 && grade < 80) {
-      return letterGrade = "C";
-    } else if (grade >= 60 && grade < 70) {
-      return letterGrade = "D";
-    } else {
-      return letterGrade = "F";
-    }
-  }
-
-  public List<Assignment> findMatchingAssignments(int id) {
-    return null;
-  }
-
-
 }

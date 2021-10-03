@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
+
 
   /////////////////////////////////////
   //// Find and read contents of a file
@@ -103,10 +105,45 @@ public class FileHandler {
 
   ///////////////////////////////////////////////////
   /////////////////////////// File Writer
-  public void writeStudentReports(String filePath) {
+  public void writeStudentReports(String fileDirectoryPath, Student student) {
+    PrintWriter output = null;
+    try {
+      // open file
+      String fileName = String.format("%s_%s.txt",student.getFirstName(), student.getLastName());
+      output = new PrintWriter(
+          new BufferedWriter(
+              new FileWriter(new File(new File(fileDirectoryPath), fileName))));
+
+      String firstName = student.getFirstName();
+      String lastName = student.getLastName();
+      String letterGrade = student.getLetterGrade();
+      double average = student.getAverage();
+      List<Assignment> assignmentList = student.getAssignmentList();
+
+      String formatted = String.format("%s %s \n\nAverage: %.2f \nLetter Grade: %s \n\n",firstName, lastName, average, letterGrade);
+      // write a string and object to the file
+      output.println(formatted);
+
+      // loop through assignment list
+      for (Assignment assignment : student.getAssignmentList() ) {
+        String assignmentName = assignment.getAssignmentName().toString();
+        double assignmentGrade = assignment.getAssignmentGrade();
+
+        String formattedAssignment = String.format("%s: %.2f%%",assignmentName, assignmentGrade);
+
+        // write a string and object to the file
+        output.println(formattedAssignment);
+      }
+
+
+    } catch (IOException e) {
+      System.out.println(e);
+    } finally {
+      if (output != null) {
+        output.close();
+      }
+    }
 
   }
-
-
 
 }
