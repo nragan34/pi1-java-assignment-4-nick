@@ -109,10 +109,12 @@ public class FileHandler {
     PrintWriter output = null;
     try {
       // open file
+      File fileDirectoryPathVariable = new File(fileDirectoryPath);
+      fileDirectoryPathVariable.mkdirs();
       String fileName = String.format("%s_%s.txt",student.getFirstName(), student.getLastName());
       output = new PrintWriter(
           new BufferedWriter(
-              new FileWriter(new File(new File(fileDirectoryPath), fileName))));
+              new FileWriter(new File(fileDirectoryPath, fileName))));
 
       String firstName = student.getFirstName();
       String lastName = student.getLastName();
