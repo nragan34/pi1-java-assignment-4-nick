@@ -23,7 +23,7 @@ public class CLI {
   public double userInputNumber(String msg) {
     BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
     System.out.print(msg);
-    while(true) {
+    while (true) {
       try {
         String getUserInput = userInput.readLine();
         double getUserInputDouble = Double.parseDouble(getUserInput);

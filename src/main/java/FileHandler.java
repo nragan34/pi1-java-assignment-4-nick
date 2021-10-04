@@ -85,23 +85,6 @@ public class FileHandler {
     }
   }
 
-  ///////////////////////////////////////////////////
-  /////////////////////////// Check to see if line has a space between firstName and lastName
-//  public String checkLineBetweenNames(String line) {
-//    int count = 0;
-//    for (int i = 0; i < line.length(); i++) {
-//      char c = line.charAt(i);
-//      if (c == ' ') {
-//        count++;
-//      }
-//    }
-//    if (count != 1) {
-//      System.out.println(
-//          "\nPlease re-format your students.txt file.\nEach line needs to contain a first and last name separated by a space! Try again.");
-//      return null;
-//    }
-//    return line;
-//  }
 
   ///////////////////////////////////////////////////
   /////////////////////////// File Writer
@@ -111,7 +94,7 @@ public class FileHandler {
       // open file
       File fileDirectoryPathVariable = new File(fileDirectoryPath);
       fileDirectoryPathVariable.mkdirs();
-      String fileName = String.format("%s_%s.txt",student.getFirstName(), student.getLastName());
+      String fileName = String.format("%s_%s.txt", student.getFirstName(), student.getLastName());
       output = new PrintWriter(
           new BufferedWriter(
               new FileWriter(new File(fileDirectoryPath, fileName))));
@@ -122,16 +105,17 @@ public class FileHandler {
       double average = student.getAverage();
       List<Assignment> assignmentList = student.getAssignmentList();
 
-      String formatted = String.format("%s %s \n\nAverage: %.2f \nLetter Grade: %s \n\n",firstName, lastName, average, letterGrade);
+      String formatted = String.format("%s %s \n\nAverage: %.2f \nLetter Grade: %s \n\n", firstName,
+          lastName, average, letterGrade);
       // write a string and object to the file
       output.println(formatted);
 
       // loop through assignment list
-      for (Assignment assignment : student.getAssignmentList() ) {
+      for (Assignment assignment : student.getAssignmentList()) {
         String assignmentName = assignment.getAssignmentName().toString();
         double assignmentGrade = assignment.getAssignmentGrade();
 
-        String formattedAssignment = String.format("%s: %.2f%%",assignmentName, assignmentGrade);
+        String formattedAssignment = String.format("%s: %.2f%%", assignmentName, assignmentGrade);
 
         // write a string and object to the file
         output.println(formattedAssignment);

@@ -29,8 +29,8 @@ public class Student {
   }
 
 
-  public void calculateaverage(int count) {
-    System.out.println("We are in Calculate average printing this.gradeList" + this.gradeList);
+  public void calculateAverage(int count) {
+
     double totalPoints = count * 100;
     double sum = 0;
     for (double i : gradeList) {
@@ -39,10 +39,10 @@ public class Student {
     this.average = (sum * 100) / totalPoints;
   }
 
-  public void calculateAverage() {
+  public void calculateLetterGrade() {
     double grade = this.average;
     if (grade >= 90) {
-      this.letterGrade=  "A";
+      this.letterGrade = "A";
     } else if (grade >= 80) {
       this.letterGrade = "B";
     } else if (grade >= 70) {

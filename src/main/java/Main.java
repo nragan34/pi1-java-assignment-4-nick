@@ -30,10 +30,6 @@ public class Main {
   //// Assignment Object List
   List<Assignment> assignmentList = new ArrayList<>();
 
-  /////////////////////////////////////
-  //// Report Object List
-  HashMap<Integer, List<Report>> studentAssignmentList = new HashMap<>();
-
 
   public static void main(String... args) {
     System.out.println(welcome);
@@ -97,7 +93,7 @@ public class Main {
     // C:\Users\ragan\Desktop\students.txt
     ////////////////////////////
     // Create report
-    HashMap<Student, List<Double>> studentGradeMap = createStudentReport();
+    createStudentReport();
     // create student object gradeList with assignment grades
     createStudentObjectLetterGradeList();
     // Set letter grade for the average grade
@@ -137,7 +133,6 @@ public class Main {
     String assignmentName = commandLineInput.userInputString(
         "\nEnter the name of an Assignment: ");
 
-    System.out.println("Student Object List" + studentObjectList);
     studentObjectList
         .stream()
         .forEach(student -> {
@@ -147,7 +142,6 @@ public class Main {
               "Enter the grade for " + student.getFirstName() + " " + student.getLastName()
                   + ": ");
 
-          System.out.println("Printing Assignment Grade: " + studentGrade);
           // create an assignment object
           Assignment assignmentObject = new Assignment(student.getId(), assignmentName,
               studentGrade);
@@ -180,15 +174,12 @@ public class Main {
           List<Assignment> assignmentGradeList = student.getAssignmentList();
           // Loop through assignment grades and add to gradesList
           for (int i = 0; i < assignmentGradeList.size(); i++) {
-            System.out.println("Assignment grade list: " + assignmentGradeList.get(i));
             student.getGradeList().add(assignmentGradeList.get(i).getAssignmentGrade());
           }
           // Create Hashmap
           studentGradesMap.put(student, gradesList);
         });
     // return Hashmap <Student, List of grades>
-    System.out.println("We are in the createStudentReport.... -> ");
-    studentObjectList.stream().forEach(s -> {System.out.println(s.getGradeList().get(0));});
     return studentGradesMap;
   }
 
@@ -198,32 +189,19 @@ public class Main {
     studentObjectList
         .stream()
         .forEach(student -> {
-          // pass through size of list as count
-          // using count to get total points      totalPoints = 100 * count
-          student.calculateaverage(student.getGradeList().size());
-//          System.out.println("Get student grades........... ");
-//          System.out.println(student.getGradeList());
+
+          student.calculateAverage(student.getGradeList().size());
+
         });
-//    studentObjectList.stream().forEach(s -> {
-//      System.out.println("Printing average............ ");
-//      System.out.println(s.getaverage());
-//    });
+
   }
-
-//  public double calculateaverage() {
-//
-////    double gradesEarned = gradeAverage += gradeAverage;
-////    double totalScore = assignmentCount * 100;
-////    return this.gradeAverage = gradesEarned / totalScore;
-//  }
-
 
 
   public void setLetterGrade() {
     studentObjectList
         .stream()
         .forEach(student -> {
-          student.calculateAverage();
+          student.calculateLetterGrade();
         });
   }
 
@@ -243,128 +221,6 @@ public class Main {
         });
   }
 
-  
+
 }
-
-
-
 // C:\Users\ragan\Desktop\students.txt
-
-
-
-
-//          for (Map.Entry<Student, List<Double>> entry : studentListHashMap.entrySet()) {
-//            Student key = entry.getKey();
-//            List<Double> value = entry.getValue();
-//            System.out.println("Printing values..... -> ");
-//            System.out.println(value);
-//            // ... // ..
-//            System.out.println();
-//          }
-
-
-
-//  public List<Assignment> createAssignmentListPerStudent(Student student) {
-//    List<Assignment> listOfAssignments = new ArrayList<>();
-//    if (requestNameOfAssignment(student) != null) {
-//      listOfAssignments.add(requestNameOfAssignment(student));
-//      return listOfAssignments;
-//    } else {
-//      createAssignmentObjects();
-//    }
-//  }
-//
-//  public Assignment requestNameOfAssignment(Student student) {
-//    // get name of assignment
-//    String assignmentName = commandLineInput.userInputString(
-//        "\nEnter the name of an Assignment: ");
-//
-//    // create assignment
-//    Assignment createdAssignment = new Assignment(student.getId(), assignmentName, commandLineInput.userInputNumber(
-//        "Enter the grade for " + student.getFirstName() + " " + student.getLastName() + ": "));
-//
-//
-//    return createdAssignment;
-//  }
-
-//  ////////////////////////////
-//  // Match Student Object
-//  public void findStudentObjectMatches() {
-//    System.out.println("student report card");
-//    studentObjectList
-//        .stream()
-//        .forEach(e -> {
-//          System.out.println("finding student object matches.... ");
-//          System.out.println(e.getId());
-//        });
-//  }
-
-//  ////////////////////////////
-//  // Create report cards objects
-//  public void cleanReportCardData() {
-//    System.out.println("student report card");
-//    assignmentList
-//        .stream()
-//        .forEach(e -> {
-//          System.out.println(e.getStudentId());
-//          System.out.println("----------------");
-//          System.out.println("----------------");
-//        });
-//  }
-
-//    String outputDirectory = commandLineInput.userInputString(
-//        "\nEnter output Directory: ");
-////////////////////////////
-// Create report cards from assignmentList
-//  public void getStudentsAssignments() {
-//    System.out.println("student report card");
-//    List<Integer> collectedStudentId = studentObjectList
-//        .stream().map(e -> e.getId()).collect(Collectors.toList());
-//    assignmentList
-//        .stream()
-//        .filter(e -> collectedStudentId.contains(e.getStudentId()))
-//        .forEach(System.out::println);
-//  }
-
-// C:\Users\ragan\Desktop\students.txt
-
-// Write Grades to a report card
-
-// get output file location
-
-// loop through assignment object and find all grades associated with student by id
-
-// create a list of those
-
-// loop through that list
-
-// create new file for each
-
-////////////////////////////
-// Prompt user if they would like to create another assignment
-
-
-//    List<Student> studentList = new ArrayList<>();
-//
-//    Student student1 = new Student("firstName1", "lastName1");
-//    Student student2 = new Student("firstName2", "lastName2");
-//    Student student3 = new Student("firstName3", "lastName3");
-//
-//    studentList.add(student1);
-//    studentList.add(student2);
-//    studentList.add(student3);
-//
-//    Assignment assignment1 = new Assignment(student1.id(), student1.getFirstName(), student1.getLastName(), "a1", 10);
-//    Assignment assignment2 = new Assignment(student2.id(), student2.getFirstName(), student2.getLastName(), "a1", 10);
-//    Assignment assignment3 = new Assignment(student3.id(), student3.getFirstName(), student3.getLastName(), "a1", 10);
-//
-//    System.out.println(student1.id());
-//    System.out.println(assignment1.id());
-//
-//    System.out.println(student2.id());
-//    System.out.println(assignment2.id());
-//
-//    System.out.println(student3.id());
-//    System.out.println(assignment3.id());
-//
-//    studentList.forEach(e -> System.out.println(e.getFirstName()));
