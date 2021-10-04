@@ -147,6 +147,7 @@ public class Main {
               "Enter the grade for " + student.getFirstName() + " " + student.getLastName()
                   + ": ");
 
+          System.out.println("Printing Assignment Grade: " + studentGrade);
           // create an assignment object
           Assignment assignmentObject = new Assignment(student.getId(), assignmentName,
               studentGrade);
@@ -179,14 +180,15 @@ public class Main {
           List<Assignment> assignmentGradeList = student.getAssignmentList();
           // Loop through assignment grades and add to gradesList
           for (int i = 0; i < assignmentGradeList.size(); i++) {
-            student.getGradeList().add(assignmentGradeList.get(0).getAssignmentGrade());
+            System.out.println("Assignment grade list: " + assignmentGradeList.get(i));
+            student.getGradeList().add(assignmentGradeList.get(i).getAssignmentGrade());
           }
           // Create Hashmap
           studentGradesMap.put(student, gradesList);
         });
     // return Hashmap <Student, List of grades>
     System.out.println("We are in the createStudentReport.... -> ");
-    studentObjectList.stream().forEach(s -> {System.out.println(s.getGradeList());});
+    studentObjectList.stream().forEach(s -> {System.out.println(s.getGradeList().get(0));});
     return studentGradesMap;
   }
 
